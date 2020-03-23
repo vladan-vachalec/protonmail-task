@@ -24,3 +24,8 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew cucumber -Dbrowser=firefox
+    - name: Archive Test Results
+      uses: actions/upload-artifact@v1
+      with:
+        name: tests-results
+        path: target/cucumber-reports
