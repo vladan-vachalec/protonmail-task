@@ -34,8 +34,11 @@ public class WebDriverFactory {
         public <T> T setOptions() {
             switch (this) {
                 case Chrome:
-                    String chromedriverPath = "/src/test/resources/chromedriver";
-                    System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + chromedriverPath);
+                    String chromedriverPath = System.getProperty("user.dir") + "/src/test/resources/chromedriver";
+                    if (!System.getenv("CHROMEWEBDRIVER").isEmpty()) {
+                        chromedriverPath = System.getenv("CHROMEWEBDRIVER");
+                    }
+                    System.setProperty("webdriver.chrome.driver", chromedriverPath);
 
                     Map<String, Object> prefs = new HashMap<>();
                     prefs.put("profile.default_content_setting_values.notifications", 2);
