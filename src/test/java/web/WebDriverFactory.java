@@ -36,7 +36,7 @@ public class WebDriverFactory {
                 case Chrome:
                     String chromedriverPath = System.getProperty("user.dir") + "/src/test/resources/chromedriver";
                     if (!System.getenv("CHROMEWEBDRIVER").isEmpty()) {
-                        chromedriverPath = System.getenv("CHROMEWEBDRIVER");
+                        chromedriverPath = System.getenv("CHROMEWEBDRIVER") + "/chromedriver";
                     }
                     System.setProperty("webdriver.chrome.driver", chromedriverPath);
 
