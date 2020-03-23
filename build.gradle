@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+}
+
+ext {
+    cucumberVersion = '5.5.0'
+}
+
+group 'org.proton'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.4'
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    testImplementation "io.cucumber:cucumber-java:$cucumberVersion"
+    testImplementation "io.cucumber:cucumber-junit:$cucumberVersion"
+}
+
+tasks.withType(JavaExec) {
+    systemProperties System.properties
+}
+
+task cucumber() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            systemProperty "browser", System.getProperty("browser")
+            args = ['--plugin', 'pretty', '--plugin', 'html:target/cucumber-reports', '--glue', 'web.proton.steps', 'src/test/resources/']
+        }
+    }
+}
