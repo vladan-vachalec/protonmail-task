@@ -35,11 +35,11 @@ public class LoginScreen extends POBase {
         waitForVisibility(USERNAME_IF, PASSWORD_IF, LOGIN_BUTTON);
     }
 
-    public MainMailScreen loginToMail(String username, String password) {
+    public MainMailScreen loginToMail() {
         usernameIF.clear();
-        usernameIF.sendKeys(username);
+        usernameIF.sendKeys(System.getProperty("protonUsername"));
         passwordIF.clear();
-        passwordIF.sendKeys(password);
+        passwordIF.sendKeys(System.getProperty("protonPassword"));
         loginButton.submit();
         return MainMailScreen.getInstance(driver);
     }

@@ -1,5 +1,12 @@
 plugins {
     id 'java'
+    id 'com.novoda.build-properties' version '0.4.1'
+}
+
+buildProperties {
+    secrets {
+        using project.file('secrets.properties')
+    }
 }
 
 ext {
@@ -34,12 +41,22 @@ tasks.withType(JavaExec) {
 
 task cucumber() {
     dependsOn assemble, compileTestJava
+    String username = buildProperties.secrets['username'].string
+    String password = buildProperties.secrets['password'].string
+    if (System.properties.containsKey("protonUsername")) {
+        username = System.getProperty("protonUsername")
+    }
+    if (System.properties.containsKey("protonPassword")) {
+        password = System.getProperty("protonPassword")
+    }
     doLast {
         javaexec {
             main = "io.cucumber.core.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
             systemProperty "browser", System.getProperty("browser")
-            args = ['--plugin', 'pretty', '--plugin', 'html:target/cucumber-reports', '--glue', 'web.proton.steps', 'src/test/resources/']
+            systemProperty "protonUsername", username
+            systemProperty "protonPassword", password
+            args = ['--plugin', 'pretty', '--plugin', 'html:target/cucumber-reports', '--strict', '--glue', 'web.proton.steps', 'src/test/resources/']
         }
     }
 }

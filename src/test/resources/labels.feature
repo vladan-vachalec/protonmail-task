@@ -2,7 +2,7 @@ Feature: As a user, I want to add, delete and edit labels, so that I can label m
 
   Background: User is logged in
     Given ProtonMail website is opened
-    And user logs in with credentials as username: "vladanvac" and password "Proton123"
+    And user logs in with his ProtonMail credentials
 
 
   Scenario: User creates a deletes a label

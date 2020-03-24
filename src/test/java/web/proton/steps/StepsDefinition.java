@@ -10,8 +10,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import web.WebDriverFactory;
-import web.proton.pageobjects.FoldersLabelsScreen;
 import web.proton.pageobjects.AddLabelScreen;
+import web.proton.pageobjects.FoldersLabelsScreen;
 import web.proton.pageobjects.LoginScreen;
 import web.proton.pageobjects.MainMailScreen;
 
@@ -30,10 +30,10 @@ public class StepsDefinition {
         driver.get("https://beta.protonmail.com/login");
     }
 
-    @And("user logs in with credentials as username: {string} and password {string}")
-    public void userLogsInWithCredentialsAsUsernameAndPassword(String username, String password) {
+    @And("user logs in with his ProtonMail credentials")
+    public void userLogsInWithCredentials() {
         loginScreen = LoginScreen.getInstance(driver);
-        mainMailScreen = loginScreen.loginToMail(username, password);
+        mainMailScreen = loginScreen.loginToMail();
         mainMailScreen.dismissNotification();
     }
 

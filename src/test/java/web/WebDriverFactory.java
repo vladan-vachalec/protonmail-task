@@ -34,10 +34,10 @@ public class WebDriverFactory {
         public <T> T setOptions() {
             switch (this) {
                 case Chrome:
-                    String chromedriverPath = System.getProperty("user.dir") + "/src/test/resources/chromedriver";
-                    if (!System.getenv("CHROMEWEBDRIVER").isEmpty()) {
-                        chromedriverPath = System.getenv("CHROMEWEBDRIVER") + "/chromedriver";
-                    }
+                    String chromedriverEnv = System.getenv("CHROMEWEBDRIVER");
+                    String chromedriverPath = (chromedriverEnv != null && !chromedriverEnv.isEmpty()) ?
+                            System.getenv("CHROMEWEBDRIVER") + "/chromedriver" : System.getProperty("user.dir") + "/src/test/resources/chromedriver";
+
                     System.setProperty("webdriver.chrome.driver", chromedriverPath);
 
                     Map<String, Object> prefs = new HashMap<>();
