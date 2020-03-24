@@ -1,7 +1,7 @@
 .gradle
 /target
 /build/
-
+secrets.properties
 # Ignore Gradle GUI config
 gradle-app.setting
 

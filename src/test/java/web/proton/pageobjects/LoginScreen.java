@@ -37,10 +37,17 @@ public class LoginScreen extends POBase {
 
     public MainMailScreen loginToMail() {
         usernameIF.clear();
-        usernameIF.sendKeys(System.getProperty("protonUsername"));
+        usernameIF.sendKeys(removeLeadingCharFromSecrets(System.getProperty("protonUsername")));
         passwordIF.clear();
-        passwordIF.sendKeys(System.getProperty("protonPassword"));
+        passwordIF.sendKeys(removeLeadingCharFromSecrets(System.getProperty("protonPassword")));
         loginButton.submit();
         return MainMailScreen.getInstance(driver);
+    }
+
+    private String removeLeadingCharFromSecrets(String secret) {
+        if (secret.charAt(0) == '=') {
+            return secret.substring(1);
+        }
+        return secret;
     }
 }
