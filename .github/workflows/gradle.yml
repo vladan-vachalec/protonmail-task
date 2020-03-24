@@ -26,6 +26,7 @@ jobs:
       run: ./gradlew cucumber -Dbrowser=firefox -DprotonUsername==${{ secrets.PROTON_USERNAME }} -DprotonPassword==${{ secrets.PROTON_PASSWORD }}
     - name: Archive Test Results
       uses: actions/upload-artifact@v1
+      if: always()
       with:
         name: tests-results
         path: target/cucumber-reports
