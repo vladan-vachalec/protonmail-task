@@ -20,7 +20,7 @@ public class AddLabelScreen extends POBase {
 
     public AddLabelScreen(WebDriver driver) {
         this.driver = driver;
-        waitForVisibility();
+        waitForVisibility(LABEL_NAME_IF);
     }
     public static AddLabelScreen getInstance(WebDriver driver) {
         AddLabelScreen addLabelScreen = new AddLabelScreen(driver);

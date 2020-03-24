@@ -28,20 +28,12 @@ public class POBase {
     public static final String LABEL_ITEM_DROPDOWN = "button[data-test-id='dropdown:open']";
     public static final String LABEL_ITEM_DELETE = "button[data-test-id='folders/labels:item-delete']";
     public static final String LABEL_DELETE_CONFIRM = "button[type='submit']";
+    public static final String LABEL_ITEM_EDIT = "button[data-test-id='folders/labels:item-edit']";
 
     // Labels page
     public static final String LABEL_NAME_IF = "input[data-test-id='label/folder-modal:name']";
     public static final String COLORS = "li[class='ColorSelector-item']";
     public static final String SUBMIT_BUTTON = "button[type='submit']";
-
-
-    //CrossroadPage
-    public static final String BUTTON_BACK_TO_CATALOG = "div[class$='crossTopbuttons']>a[class*='grey']";
-    public static final String BUTTON_TO_CART = "div[class$='crossTopbuttons']>a[class*='green']";
-
-    //CategoryPage
-    public static final String CATEGORY_ITEMS = "a[class='btnk1']";
-
 
     public WebDriver driver;
 
@@ -55,6 +47,8 @@ public class POBase {
 
     public WebElement findElementByText(String text, String attribute, WebDriver driver) {
         String xpath = String.format("//%s[contains(text(),'%s')]", attribute, text);
+        WebDriverWait wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
         return driver.findElement(By.xpath(xpath));
     }
 

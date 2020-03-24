@@ -43,8 +43,8 @@ public class StepsDefinition {
     }
 
     @And("user creates a label with name: {string}")
-    public void userCreatesALabelWithName(String labelName) {
-        this.labelName = labelName;
+    public void userCreatesALabelWithName(String newLabelName) {
+        labelName = newLabelName;
         addLabelScreen = foldersLabelsScreen.navigateToAddLabel();
         foldersLabelsScreen = addLabelScreen.createLabel(labelName);
     }
@@ -62,6 +62,13 @@ public class StepsDefinition {
     @Then("the label is removed from list of labels")
     public void theLabelIsRemovedFromListOfLabels() {
         foldersLabelsScreen.verifyLabelNotExists(labelName);
+    }
+
+    @When("user edits the label with: {string} suffix")
+    public void userEditsTheLabelNameTo(String newLabelName) {
+        labelName += newLabelName;
+        addLabelScreen = foldersLabelsScreen.editLabel();
+        addLabelScreen.createLabel(newLabelName);
     }
 
     @After()

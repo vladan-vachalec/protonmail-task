@@ -39,6 +39,11 @@ public class FoldersLabelsScreen extends POBase {
         return FoldersLabelsScreen.getInstance(driver);
     }
 
+    public AddLabelScreen editLabel() {
+        findElementByCss(LABEL_ITEM_EDIT).click();
+        return AddLabelScreen.getInstance(driver);
+    }
+
     public FoldersLabelsScreen verifyLabelExists(String labelName) {
         findElementByText(labelName, "span", driver);
         return this;
