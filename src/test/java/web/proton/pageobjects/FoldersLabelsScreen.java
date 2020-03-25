@@ -50,11 +50,6 @@ public class FoldersLabelsScreen extends POBase {
     }
 
     public FoldersLabelsScreen verifyLabelNotExists(String labelName) {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         List<WebElement> labels = findElementsByText(labelName, "span", driver);
         Assert.assertTrue(String.format("Label %s was found, but should have been deleted", labelName), labels.isEmpty());
         return this;

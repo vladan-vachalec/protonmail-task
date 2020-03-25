@@ -29,7 +29,8 @@ public class AddLabelScreen extends POBase {
     }
 
     public FoldersLabelsScreen createLabel(String name) {
-        labelName.clear();
+        //This does not work on Chrome, but works on FF
+        //labelName.clear();
         labelName.sendKeys(name);
         colors.get(0).click();
         submitButton.submit();
