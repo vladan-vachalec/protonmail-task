@@ -50,6 +50,7 @@ public class FoldersLabelsScreen extends POBase {
     }
 
     public FoldersLabelsScreen verifyLabelNotExists(String labelName) {
+        waitForElementToDisappear(findElementByCss(LABEL_ITEM_DROPDOWN));
         List<WebElement> labels = findElementsByText(labelName, "span", driver);
         Assert.assertTrue(String.format("Label %s was found, but should have been deleted", labelName), labels.isEmpty());
         return this;

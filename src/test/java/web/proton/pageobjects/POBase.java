@@ -45,6 +45,11 @@ public class POBase {
         }
     }
 
+    public void waitForElementToDisappear(WebElement webElement) {
+        WebDriverWait wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
+        wait.until(ExpectedConditions.invisibilityOf(webElement));
+    }
+
     public WebElement findElementByText(String text, String attribute, WebDriver driver) {
         String xpath = String.format("//%s[contains(text(),'%s')]", attribute, text);
         WebDriverWait wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
