@@ -8,6 +8,9 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  issues: 
+    types: [ opened, edited ]
+  
 
 jobs:
   build:
