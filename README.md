@@ -58,7 +58,3 @@ When the tests are being executed with the commands mentioned above, Cucumber ma
     - Check if a label is present in the left menu
     - Assign labels to emails
     etc.
-
-
-## Notes
-Github Actions cannot be made public: https://github.community/t5/GitHub-Actions/Make-the-quot-Actions-quot-tab-public/td-p/32482
